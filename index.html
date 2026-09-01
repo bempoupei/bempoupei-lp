@@ -223,10 +223,11 @@ fbq('track','PageView');
 (function(){
   var barra=document.getElementById('barra-fixa');
   if(!barra) return;
+  // só os dois CTAs. O rodapé não entra: o padding-bottom dele já impede
+  // que a barra cubra a política de privacidade.
   var alvos=[document.querySelector('.hero .btn'),
-             document.querySelector('.fechamento .btn'),
-             document.querySelector('footer')].filter(Boolean);
-  var MARGEM=110, agendado=false;
+             document.querySelector('.fechamento .btn')].filter(Boolean);
+  var MARGEM=24, agendado=false;
   function naTela(el){
     var r=el.getBoundingClientRect();
     return r.bottom>0 && r.top<(window.innerHeight+MARGEM);
