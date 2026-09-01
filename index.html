@@ -3,21 +3,237 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex">
-<title>BemPoupei</title>
+<meta name="facebook-domain-verification" content="2r6s3so5c23cg3efd7la6o3xm1eo0l">
+<title>BemPoupei — achadinhos de casa conferidos todo dia</title>
+<meta name="description" content="Todo dia uma seleção curta de achadinhos de casa, cozinha e organização, com o preço conferido. Grupo gratuito no WhatsApp.">
+<meta property="og:title" content="BemPoupei — achadinhos de casa conferidos todo dia">
+<meta property="og:description" content="Uma seleção curta por dia, com preço conferido. Grupo gratuito no WhatsApp.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bempoupei.casecomseubolso.com.br/">
+<link rel="canonical" href="https://bempoupei.casecomseubolso.com.br/">
 <style>
-  :root{color-scheme:light dark}
-  body{margin:0;min-height:100dvh;display:grid;place-items:center;
-       font:400 1rem/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;
-       background:#0f1115;color:#e6e8ec;text-align:center;padding:2rem}
-  h1{font-size:1.5rem;margin:0 0 .5rem;letter-spacing:-.02em}
-  p{margin:0;color:#9aa3af;font-size:.95rem}
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#FBFAF7; --surface:#FFFFFF; --line:#E8E4DC;
+  --ink:#1A1D1B; --muted:#5F6663;
+  --brand:#0B6E4F; --brand-ink:#FFFFFF; --brand-soft:#E7F3ED;
+  --accent:#B4531A;
+  --radius:14px; --maxw:34rem;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#101311; --surface:#181C1A; --line:#2A302D;
+    --ink:#EDF0EE; --muted:#A0AAA5;
+    --brand:#2E9B71; --brand-ink:#07120D; --brand-soft:#16261F;
+    --accent:#E08A4E;
+  }
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font:400 1.0625rem/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 1.25rem}
+h1,h2,h3{line-height:1.2;letter-spacing:-.021em;margin:0}
+h1{font-size:clamp(1.85rem,7vw,2.45rem);font-weight:700}
+h2{font-size:1.3rem;font-weight:650;margin-bottom:.9rem}
+p{margin:0}
+
+header{padding:1.6rem 0 .4rem}
+.logo{display:inline-flex;align-items:baseline;gap:.05rem;font-weight:700;font-size:1.1rem;letter-spacing:-.03em}
+.logo span{color:var(--brand)}
+
+.hero{padding:1.6rem 0 2.2rem}
+.hero p.sub{margin-top:1rem;font-size:1.075rem;color:var(--muted)}
+.hero .kicker{
+  display:inline-block;margin-bottom:1rem;padding:.3rem .7rem;
+  background:var(--brand-soft);color:var(--brand);
+  border-radius:100px;font-size:.8rem;font-weight:600;letter-spacing:.01em;
+}
+
+.cta-block{margin-top:1.6rem}
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:.55rem;
+  width:100%;padding:1.05rem 1.25rem;
+  background:var(--brand);color:var(--brand-ink);
+  border:0;border-radius:var(--radius);
+  font:650 1.075rem/1 inherit;text-decoration:none;
+  cursor:pointer;transition:transform .12s ease,filter .12s ease;
+}
+.btn:hover{filter:brightness(1.07)}
+.btn:active{transform:scale(.985)}
+.btn svg{flex:0 0 auto}
+.cta-note{margin-top:.7rem;text-align:center;font-size:.875rem;color:var(--muted)}
+
+section{padding:2.1rem 0;border-top:1px solid var(--line)}
+
+ul.list{list-style:none;margin:0;padding:0;display:grid;gap:1rem}
+ul.list li{display:grid;grid-template-columns:1.4rem 1fr;gap:.7rem;align-items:start}
+ul.list .tick{color:var(--brand);font-weight:700;line-height:1.5}
+ul.list b{font-weight:640}
+ul.list span.d{display:block;color:var(--muted);font-size:.955rem;margin-top:.1rem}
+
+ol.steps{list-style:none;counter-reset:s;margin:0;padding:0;display:grid;gap:1.1rem}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:1.75rem 1fr;gap:.85rem;align-items:start}
+ol.steps li::before{
+  content:counter(s);
+  width:1.75rem;height:1.75rem;border-radius:50%;
+  background:var(--brand-soft);color:var(--brand);
+  display:grid;place-items:center;font-size:.875rem;font-weight:700;
+}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.15rem 1.25rem}
+.card + .card{margin-top:.8rem}
+.card h3{font-size:1rem;font-weight:640;margin-bottom:.35rem}
+.card p{color:var(--muted);font-size:.955rem}
+
+.disclosure{
+  background:var(--surface);border:1px solid var(--line);
+  border-left:3px solid var(--accent);
+  border-radius:var(--radius);padding:1.1rem 1.2rem;
+}
+.disclosure h3{font-size:.95rem;font-weight:650;margin-bottom:.4rem}
+.disclosure p{color:var(--muted);font-size:.9rem}
+
+footer{padding:2rem 0 3rem;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+footer a{color:var(--muted);text-decoration:underline;text-underline-offset:.15em}
+footer a:hover{color:var(--ink)}
+footer .row{display:flex;flex-wrap:wrap;gap:.4rem .9rem;margin-bottom:.9rem}
 </style>
 </head>
 <body>
-  <div>
-    <h1>BemPoupei</h1>
-    <p>Em breve.</p>
+
+<div class="wrap">
+
+  <header>
+    <div class="logo">Bem<span>Poupei</span></div>
+  </header>
+
+  <div class="hero">
+    <div class="kicker">Grupo gratuito no WhatsApp</div>
+    <h1>Eu garimpo o preço.<br>Você só decide se vale.</h1>
+    <p class="sub">
+      Todo dia, uma seleção curta de achadinhos de casa, cozinha e organização —
+      com o preço conferido no dia em que a gente manda. Sem grupo lotado de
+      conversa, sem cem mensagens por hora.
+    </p>
+
+    <div class="cta-block">
+      <a class="btn" id="cta-topo" href="#" data-cta="topo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.15c-.25.69-1.44 1.32-1.99 1.36-.53.04-1.02.23-3.45-.72-2.9-1.14-4.74-4.1-4.88-4.29-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.09.99-2.37.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.97.88 2.11.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.16-.3.36-.42.48-.14.14-.29.29-.12.57.16.29.73 1.2 1.56 1.94 1.07.95 1.97 1.25 2.26 1.39.28.14.45.12.61-.07.17-.19.71-.83.9-1.11.19-.29.38-.24.64-.14.26.09 1.65.78 1.94.92.28.14.47.21.54.33.07.12.07.69-.18 1.38Z"/></svg>
+        Entrar no grupo do WhatsApp
+      </a>
+      <p class="cta-note">É grátis e você sai quando quiser.</p>
+    </div>
   </div>
+
+  <section>
+    <h2>O que chega pra você</h2>
+    <ul class="list">
+      <li><span class="tick">✓</span><div>
+        <b>Preço conferido no dia</b>
+        <span class="d">A gente abre o link e olha o valor antes de mandar. Achadinho com preço velho não serve pra nada.</span>
+      </div></li>
+      <li><span class="tick">✓</span><div>
+        <b>Pouca coisa, escolhida</b>
+        <span class="d">Descartamos muito mais do que enviamos. O grupo não é vitrine, é filtro.</span>
+      </div></li>
+      <li><span class="tick">✓</span><div>
+        <b>Casa, cozinha, organização e limpeza</b>
+        <span class="d">O que resolve o dia a dia de verdade — não gadget que fica na gaveta.</span>
+      </div></li>
+      <li><span class="tick">✓</span><div>
+        <b>Shopee, Amazon e Mercado Livre</b>
+        <span class="d">A gente escolhe pelo produto e pelo preço, não pela loja.</span>
+      </div></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Como funciona</h2>
+    <ol class="steps">
+      <li><div><b>Você entra no grupo</b>
+        <span class="d" style="display:block;color:var(--muted);font-size:.955rem;margin-top:.1rem">Um toque no botão. Não pedimos cadastro, e-mail nem nada.</span></div></li>
+      <li><div><b>A gente manda os achados do dia</b>
+        <span class="d" style="display:block;color:var(--muted);font-size:.955rem;margin-top:.1rem">Com foto, preço e link direto. Poucas mensagens, sempre no mesmo horário.</span></div></li>
+      <li><div><b>Você compra só o que fizer sentido</b>
+        <span class="d" style="display:block;color:var(--muted);font-size:.955rem;margin-top:.1rem">Sem pressão e sem urgência inventada. Se não valer, a gente mesmo avisa.</span></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Perguntas que todo mundo faz</h2>
+
+    <div class="card">
+      <h3>É pago?</h3>
+      <p>Não. O grupo é gratuito e não existe versão paga.</p>
+    </div>
+    <div class="card">
+      <h3>Vou receber mensagem o dia inteiro?</h3>
+      <p>Não. Só a nossa equipe escreve no grupo — ninguém mais pode mandar mensagem. São poucos envios por dia, no mesmo horário.</p>
+    </div>
+    <div class="card">
+      <h3>Como eu saio?</h3>
+      <p>Saindo do grupo pelo próprio WhatsApp, quando quiser, sem precisar avisar ninguém.</p>
+    </div>
+    <div class="card">
+      <h3>Vocês ganham alguma coisa com isso?</h3>
+      <p>Ganhamos. Os links são de afiliado: se você compra, recebemos uma comissão da loja — e o preço pra você é exatamente o mesmo. É assim que o grupo se paga e continua gratuito.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Pronta pra economizar sem pesquisar horas?</h2>
+    <div class="cta-block">
+      <a class="btn" id="cta-fim" href="#" data-cta="fim">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.15c-.25.69-1.44 1.32-1.99 1.36-.53.04-1.02.23-3.45-.72-2.9-1.14-4.74-4.1-4.88-4.29-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.09.99-2.37.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.97.88 2.11.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.16-.3.36-.42.48-.14.14-.29.29-.12.57.16.29.73 1.2 1.56 1.94 1.07.95 1.97 1.25 2.26 1.39.28.14.45.12.61-.07.17-.19.71-.83.9-1.11.19-.29.38-.24.64-.14.26.09 1.65.78 1.94.92.28.14.47.21.54.33.07.12.07.69-.18 1.38Z"/></svg>
+        Entrar no grupo do WhatsApp
+      </a>
+      <p class="cta-note">É grátis e você sai quando quiser.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="disclosure">
+      <h3>Aviso de afiliado</h3>
+      <p>O BemPoupei participa de programas de afiliados da Shopee, Amazon e Mercado Livre. Os links que compartilhamos podem gerar comissão para nós quando você compra, <b>sem nenhum custo adicional para você</b>. Preços e disponibilidade são das lojas e podem mudar a qualquer momento — sempre confira o valor no site antes de finalizar a compra.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="row">
+      <a href="/privacidade.html">Política de Privacidade</a>
+      <a href="mailto:CONTATO@EXEMPLO.COM">Contato</a>
+    </div>
+    <p>BemPoupei · Curadoria de ofertas. Não somos loja e não vendemos produtos — indicamos achados e você compra direto na loja.</p>
+    <p style="margin-top:.6rem">Este site não é afiliado ao Facebook, Instagram ou Meta Platforms, Inc.</p>
+  </footer>
+
+</div>
+
+<script>
+// ---- Destino do CTA (trocar quando o link definitivo chegar) ----
+var WHATSAPP = "https://chat.whatsapp.com/SUBSTITUIR";
+
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1981644639215668');
+fbq('track','PageView');
+
+document.querySelectorAll('[data-cta]').forEach(function(el){
+  el.setAttribute('href', WHATSAPP);
+  el.setAttribute('rel','noopener');
+  el.addEventListener('click', function(){
+    fbq('track','Lead',{content_name:'grupo-vip-whatsapp',source:el.dataset.cta});
+  });
+});
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1981644639215668&ev=PageView&noscript=1"></noscript>
+
 </body>
 </html>
