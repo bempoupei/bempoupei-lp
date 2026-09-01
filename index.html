@@ -233,7 +233,7 @@ fbq('track','PageView');
       if(i>-1) visivel[i]=e.isIntersecting;
     });
     barra.classList.toggle('visivel', !visivel.some(Boolean));
-  },{threshold:0});
+  },{threshold:0, rootMargin:'0px 0px 110px 0px'});
   alvos.forEach(function(a){ if(a) obs.observe(a); });
 })();
 
