@@ -107,8 +107,22 @@ p{margin:0}
 }
 .fechamento h2{font-size:1.6rem;color:var(--creme);text-wrap:balance}
 
+/* barra fixa */
+.barra-fixa{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:rgba(246,239,234,.93);
+  -webkit-backdrop-filter:saturate(180%) blur(12px);backdrop-filter:saturate(180%) blur(12px);
+  border-top:1px solid var(--taupe);
+  padding:.7rem 1.5rem calc(.7rem + env(safe-area-inset-bottom));
+  transform:translateY(130%);
+  transition:transform .28s cubic-bezier(.4,0,.2,1);
+}
+.barra-fixa.visivel{transform:translateY(0)}
+.barra-fixa .btn{margin-top:0;padding:1rem 1.25rem;font-size:1rem}
+@media (prefers-reduced-motion:reduce){.barra-fixa{transition:none}}
+
 /* rodapé */
-footer{border-top:1px solid var(--taupe);padding:2rem 0 3rem;font-size:.8125rem;color:var(--muted)}
+footer{border-top:1px solid var(--taupe);padding:2rem 0 5.5rem;font-size:.8125rem;color:var(--muted)}
 footer p{margin-bottom:.85rem;line-height:1.6}
 footer a{color:var(--vinho);text-decoration:underline;text-underline-offset:.15em}
 footer .links{display:flex;gap:1rem;margin-bottom:1.1rem}
@@ -190,6 +204,10 @@ footer .links{display:flex;gap:1rem;margin-bottom:1.1rem}
   </footer>
 </div>
 
+<div class="barra-fixa" id="barra-fixa">
+  <a class="btn" href="#" data-cta="fixo">Quero entrar no grupo</a>
+</div>
+
 <script>
 var WHATSAPP = "https://casecomseubolso.com.br/bempoupei";
 
@@ -200,6 +218,24 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
 (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','1981644639215668');
 fbq('track','PageView');
+
+// barra fixa: aparece só quando nenhum outro CTA está na tela
+(function(){
+  var barra=document.getElementById('barra-fixa');
+  var alvos=[document.querySelector('.hero .btn'),
+             document.querySelector('.fechamento .btn'),
+             document.querySelector('footer')];
+  if(!barra||!('IntersectionObserver' in window)) return;
+  var visivel=alvos.map(function(){return false});
+  var obs=new IntersectionObserver(function(entradas){
+    entradas.forEach(function(e){
+      var i=alvos.indexOf(e.target);
+      if(i>-1) visivel[i]=e.isIntersecting;
+    });
+    barra.classList.toggle('visivel', !visivel.some(Boolean));
+  },{threshold:0});
+  alvos.forEach(function(a){ if(a) obs.observe(a); });
+})();
 
 document.querySelectorAll('[data-cta]').forEach(function(el){
   el.setAttribute('href',WHATSAPP);
