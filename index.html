@@ -219,22 +219,31 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
 fbq('init','1981644639215668');
 fbq('track','PageView');
 
-// barra fixa: aparece só quando nenhum outro CTA está na tela
+// barra fixa: só aparece quando nenhum outro CTA está na tela
 (function(){
   var barra=document.getElementById('barra-fixa');
+  if(!barra) return;
   var alvos=[document.querySelector('.hero .btn'),
              document.querySelector('.fechamento .btn'),
-             document.querySelector('footer')];
-  if(!barra||!('IntersectionObserver' in window)) return;
-  var visivel=alvos.map(function(){return false});
-  var obs=new IntersectionObserver(function(entradas){
-    entradas.forEach(function(e){
-      var i=alvos.indexOf(e.target);
-      if(i>-1) visivel[i]=e.isIntersecting;
-    });
-    barra.classList.toggle('visivel', !visivel.some(Boolean));
-  },{threshold:0, rootMargin:'0px 0px 110px 0px'});
-  alvos.forEach(function(a){ if(a) obs.observe(a); });
+             document.querySelector('footer')].filter(Boolean);
+  var MARGEM=110, agendado=false;
+  function naTela(el){
+    var r=el.getBoundingClientRect();
+    return r.bottom>0 && r.top<(window.innerHeight+MARGEM);
+  }
+  function atualiza(){
+    agendado=false;
+    barra.classList.toggle('visivel', !alvos.some(naTela));
+  }
+  function agenda(){
+    if(agendado) return;
+    agendado=true;
+    (window.requestAnimationFrame||setTimeout)(atualiza,16);
+  }
+  window.addEventListener('scroll',agenda,{passive:true});
+  window.addEventListener('resize',agenda);
+  window.addEventListener('load',atualiza);
+  atualiza();
 })();
 
 document.querySelectorAll('[data-cta]').forEach(function(el){
