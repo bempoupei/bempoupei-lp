@@ -247,11 +247,27 @@ fbq('track','PageView');
   atualiza();
 })();
 
+// Um evento Lead por visitante, não por clique.
+// A página tem 3 CTAs; sem isso, quem clica em dois conta duas vezes — e o
+// algoritmo aprende a buscar quem clica em botão, não quem entra no grupo.
+// Se o armazenamento falhar (aba anônima), o evento dispara: perder o dado
+// é pior que contar demais.
+function leadJaEnviado(){
+  try { return localStorage.getItem('bp_lead') === '1'; } catch(e) { return false; }
+}
+function marcarLead(){
+  try { localStorage.setItem('bp_lead','1'); } catch(e) {}
+}
+
 document.querySelectorAll('[data-cta]').forEach(function(el){
   el.setAttribute('href',WHATSAPP);
   el.setAttribute('rel','noopener');
   el.addEventListener('click',function(){
-    fbq('track','Lead',{content_name:'grupo-vip-whatsapp',source:el.dataset.cta});
+    if (leadJaEnviado()) return;
+    marcarLead();
+    fbq('track','Lead',
+        {content_name:'grupo-vip-whatsapp', source:el.dataset.cta},
+        {eventID:'lead-'+Date.now()+'-'+Math.random().toString(36).slice(2,10)});
   });
 });
 </script>
